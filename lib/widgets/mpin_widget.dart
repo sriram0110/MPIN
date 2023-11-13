@@ -23,7 +23,7 @@ class _MpinWidgetState extends State<MpinWidget> {
   // }
   @override
   Widget build(BuildContext context) {
-    final defaultPinTheme = PinTheme(
+    final defaultPinTheme = PinTheme( 
       width: 50,
       height: 50,
       textStyle: const TextStyle(
@@ -58,15 +58,15 @@ class _MpinWidgetState extends State<MpinWidget> {
     );
 
     return Padding(
-      padding: const EdgeInsets.only(left: 15.0),
+      padding: const EdgeInsets.only(left: 30.0),
       child: Pinput(
         controller: widget.pinCodeController,
         showCursor: false,
-        // obscureText: true,
+        obscureText: true,
         obscuringWidget: Container(
           width: 14,
           height: 14,
-          decoration: const BoxDecoration(
+          decoration: const BoxDecoration( 
             shape: BoxShape.circle,
             color: Colors.black,
           ),
@@ -77,33 +77,23 @@ class _MpinWidgetState extends State<MpinWidget> {
         animationCurve: Curves.bounceIn,
         defaultPinTheme: defaultPinTheme,
         submittedPinTheme: submittedPinTheme,
-
         focusedPinTheme: widget.pinCodeController.text.length == 6
             ? submittedPinTheme
             : focusedPinTheme,
-
         onSubmitted: (pin) {
           setState(() {
             enteredPin = pin;
           });
         },
-        // onChanged: (value) {
-        //   setState(() {
-        //     enteredPin = value;
-
-        //   });
-        // },
-        onCompleted: (pin) {
-
+        onCompleted: (pin) => print(pin),
+        validator: (pin) {
+          if (pin == widget.currectPin) {
+            return null;
+          } else {
+            return 'Incorrect pin';
+          }
         },
-
-        // validator: (pin) {
-        //   if (pin == widget.currectPin) {
-        //     return null;
-        //   } else {
-        //     return 'Incorrect pin';
-        //   }
-        // },
+        pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
       ),
     );
   }

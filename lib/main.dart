@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:nds_mpin/screens/create_mpin_screen.dart';
-import 'package:nds_mpin/screens/nds_mpin.dart';
+// import 'package:nds_mpin/screens/nds_mpin.dart';
+import 'package:nds_mpin/widgets/mpin_widget.dart';
 // import 'package:nds_mpin/screens/create_mpin_screen.dart';
 
 void main() {
@@ -12,9 +13,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PinScreen(createMpinText: 'Create New MPIN'),
+      // home: PinScreen(createMpinText: 'Create New MPIN'),
+      home: Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MpinWidget(),
+          ],
+        ),
+      ),
     );
   }
 }
